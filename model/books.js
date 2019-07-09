@@ -58,6 +58,14 @@ class Books{
             )
         })
     }
+
+    static async getBookById(id){
+        const data = await Books.getAllBooks()
+        const books = JSON.parse(data)
+        const book = books.find( item => item.id === id)
+        return book;
+    }
+
     static async getAllBooks(){
         return new Promise((resolve, reject) => {
             fs.readFile(
