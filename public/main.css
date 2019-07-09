@@ -1,3 +1,14 @@
 .nav-wrapper{
     padding: 0 2rem;
 }
+.card-title{
+    background: rgba(0, 0, 0, .6);
+    border-radius: 20%;
+    margin: 0 auto;
+    display: block;
+}
+.card-action{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

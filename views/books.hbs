@@ -1,1 +1,30 @@
 <h2>Books page</h2>
+
+<div class="container">
+    {{#if books.length}}
+    {{#each books}}
+        <div class="row">
+            <div class="col s8 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{url}}">
+                        <span class="card-title">{{title}}</span>
+                    </div>
+                    <div class="card-content">
+                    <p>{{price}}</p>
+                    </div>
+                    <div class="card-action">
+                    <a href="#">Link form page Book</a>
+                    <form action="post">
+                        <input name="id" value={{id}} type="hidden">
+                        <button class="btn btn-secondary" type="submit">buy</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    {{else}}
+    <p>Books is not yet</p>
+    {{/if}}
+</div>
