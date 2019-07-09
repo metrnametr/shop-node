@@ -9,7 +9,7 @@ class Books{
         this.id = Math.random();
     }
 
-    static getItem(){
+    getItem(){
         return {
             title: this.title,
             price: this.price,
@@ -21,7 +21,8 @@ class Books{
     async save(){
         const data = await Books.getAllBooks();
         const books = JSON.parse(data)
-        const newItems = [...Books.getItem(), ...books];
+        const book = this.getItem();
+        const newItems = [ book, ...books];
         await Books.saveItems(newItems);
     }
 
@@ -51,16 +52,19 @@ class Books{
 
     static async saveItems(newItems){
         return new Promise((resolve, reject) => {
-            fs.writeFile(path.join(__dirname, '..', 'data', 'books.json')),
+            fs.writeFile(path.join(__dirname, '..', 'data', 'books.json'),
             JSON.stringify(newItems),
             (error) => (error) ? reject(error) : resolve()
+            )
         })
     }
     static async getAllBooks(){
         return new Promise((resolve, reject) => {
-            fs.readFile(path.join(__dirname, '..', 'data', 'books.json')),
-            'urf-8',
-            (error, content) => (error) ? reject(error) : resolve(content)
+            fs.readFile(
+            path.join(__dirname, '..', 'data', 'books.json'),
+            'utf-8',
+            (error, content) =>  (error) ? reject(error) : resolve(content)
+            )
         })
     }
 }
